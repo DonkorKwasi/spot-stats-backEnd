@@ -10,7 +10,7 @@ dotenv.config();
 
 
 const userService = require("./user-service.js");
-const port = process.env.PORT || 8000
+const HTTP_PORT = process.env.PORT || 8000
 let ExtractJwt = passportJWT.ExtractJwt;
 let JwtStrategy = passportJWT.Strategy;
 let jwtOptions = {};
@@ -88,6 +88,7 @@ app.delete("/api/user/reviews/", passport.authenticate('jwt', { session: false }
 });
 
 
-app.listen(port, () => {
-    console.log(`app listening on port ${port}`)
-  })
+userService.connect()
+.then(() => {
+    app.listen(HTTP_PORT, () => { console.log("API listening on: " + HTTP_PORT) });
+})
