@@ -8,7 +8,8 @@ cover: String,
 albumTitle: String,
 title : String,
 perSong: [Boolean],
-score: Number
+score: Number,
+description: String
 
 
 });
@@ -21,6 +22,7 @@ let userSchema = new Schema({
     },
     password: String,
    reviews: [reviewSchema],
+   accountScore: Number
     
 });
 let User;
